@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+</head>
+<body>
+    <h1>Movie Recommender</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+                <li style="color: red;">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    <form action="/recommendations" method="POST">
+        <label for="title">Enter a Movie Title:</label>
+        <input type="text" id="title" name="title" list="movie-titles">
+        <datalist id="movie-titles">
+            {% for movie in movies %}
+            <option value="{{ movie }}"></option>
+            {% endfor %}
+        </datalist>
+        <br><br>
+
+        {% for factor in ['overview', 'reviews', 'imdb_score', 'tomatometer', 'keywords', 'genres', 'country', 'length', 'revenue', 'year', 'language'] %}
+        <label for="{{ factor }}">{{ factor.replace('_', ' ').capitalize() }} Weight:</label>
+        <input type="number" id="{{ factor }}" name="{{ factor }}" step="0.000001" value="0.5">
+        <br><br>
+        {% endfor %}
+
+        <button type="submit">Get Recommendations</button>
+    </form>
+    <br>
+    <a href="/all_movies">View All Available Movies</a>
+    <br>
+    <a href="/random_movies">View Random Movies</a>
+</body>
+</html>

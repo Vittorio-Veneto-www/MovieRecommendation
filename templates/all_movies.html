@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Available Movies</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Available Movies</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Title</th>
+                <th>Overview</th>
+                <th>Genres</th>
+                <th>Keywords</th>
+                <th>IMDB Score</th>
+                <th>Tomatometer</th>
+                <th>Revenue</th>
+                <th>Release Date</th>
+                <th>Country</th>
+                <th>Length</th>
+                <th>Language</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i, movie in enumerate(movies) %}
+            <tr>
+                <td>{{ i }}</td>
+                <td>{{ movie.tmdb_title }}</td>
+                <td>{{ movie.tmdb_overview }}</td>
+                <td>{{ movie.tmdb_genres }}</td>
+                <td>{{ movie.tmdb_keywords }}</td>
+                <td>{{ movie.imdb_averageRating }}</td>
+                <td>{{ movie.rotten_tomatoMeter }}</td>
+                <td>{{ movie.tmdb_revenue }}</td>
+                <td>{{ movie.tmdb_release_date }}</td>
+                <td>{{ movie.tmdb_production_countries }}</td>
+                <td>{{ movie.tmdb_runtime }}</td>
+                <td>{{ movie.rotten_originalLanguage }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
