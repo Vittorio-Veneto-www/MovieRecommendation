@@ -43,7 +43,7 @@ def get_score_overview(idx: int):
     return cosine_sim[idx]
 
 # Load reviews data and compute TF-IDF matrix for reviews
-df_reviews = pd.read_csv("data/rotten_reviews.csv", index_col="id")["reviewText"]
+df_reviews = pd.concat([pd.read_csv("data/rotten_reviews_p1.csv", index_col="id"), pd.read_csv("data/rotten_reviews_p2.csv", index_col="id")])["reviewText"]
 tfidf_matrix_reviews = TfidfVectorizer().fit_transform(df["rotten_id"].apply(lambda x: df_reviews.get(x, "")))
 
 # Compute the cosine similarity matrix for reviews

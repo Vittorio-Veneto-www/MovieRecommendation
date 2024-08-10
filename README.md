@@ -2,8 +2,6 @@
 
 A customizable movie recommendation system that utilizes pluggable factors and weights to recommend movies.
 
-You will need to install git-lfs package to download data files.
-
 Used libraries:
 ```bash
 pip install sklearn pandas numpy flask gunicorn
